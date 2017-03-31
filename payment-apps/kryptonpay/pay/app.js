@@ -26,7 +26,7 @@ self.addEventListener('paymentrequest', function(event) {
             windowClient.postMessage(event.data);
         })
         .catch(function(error) {
-            alert(error);
+            alert("Error "+error);
             reject(error);
         });
     }));
