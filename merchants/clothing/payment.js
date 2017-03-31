@@ -119,7 +119,7 @@ function buyWithAny(key) {
 }
 
 function buyWithKryptonPay(key){
-    alert("buyWithKryptonPay");
+    alert("buyWithKryptonPay POUET");
     var methodData = [
         {
             supportedMethods: [ "https://kryptonpay.no/pay" ]
