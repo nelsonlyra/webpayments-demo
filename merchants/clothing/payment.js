@@ -118,6 +118,28 @@ function buyWithAny(key) {
     buy(item, methodData);
 }
 
+function buyWithKryptonPay(key){
+    var methodData = [
+        {
+            supportedMethods: [ "https://kryptonpay.no/pay" ]
+        }
+    ];
+
+    buy(item, methodData, function(error) {
+        if (error.code == DOMException.NOT_SUPPORTED_ERR) {
+            if (getQueryParam("buyWithKryptonPay")) {
+                return;
+            }
+            var redirectUrl = window.location.href;
+            redirectUrl += redirectUrl.indexOf('?') == -1 ? '?' : '&';
+            redirectUrl += "buyWithKryptonPay=" + key;
+            window.location.href =
+                "https://nelsonlyra.github.io/webpayments-demo/payment-apps/kryptonpay/signup/?redirect_url=" +
+                encodeURI(redirectUrl);
+        }
+    });
+}
+
 function buyWithTommyPay(key) {
     var item = items[key];
     var methodData = [

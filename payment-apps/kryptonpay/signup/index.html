@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up for KryptonPay</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../files/style.css"/>
+    </head>
+    <body>
+
+        <a class="button" href="#" onclick="install(); return false;">Install KryptonPay</a>
+
+        <script>
+            var nameField = document.getElementById("name");
+            var numberField = document.getElementById("number");
+
+            function getQueryParam(name) {
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+                results = regex.exec(window.location.search);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            function install() {
+                navigator.serviceWorker.register("../pay/app.js")
+                .then(function(registration) {
+                    return registration.paymentAppManager.setManifest({
+                        name: "KryptonPay",
+                        label: "KryptonPay",
+                        options: [
+                        {
+                            //id: numberField.value.substr(-4),
+                            enabledMethods: [ "https://kryptonpay.no/pay" ]
+                        }]
+                    });
+                }).then(function() {
+                    var redirectUrl = getQueryParam("redirect_url");
+                    window.location.href = redirectUrl ? redirectUrl : "confirmation.html";
+                }).catch(function(error) {
+                    alert("error: " + error);
+                });
+            }
+        </script>
+    </body>
+</html>
