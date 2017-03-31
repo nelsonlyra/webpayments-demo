@@ -1,11 +1,13 @@
 console.log("Running service worker");
 
 self.addEventListener('paymentrequest', function(event) {
-    console.log("PaymentRequest: " + JSON.stringify(event.data));
+    
+    alert("PaymentRequest: " + JSON.stringify(event.data));
+    
     event.respondWith(new Promise(function(resolve, reject) {
         self.addEventListener('message', function(event) {
             var response = event.data;
-            console.log("PaymentResponse: " + JSON.stringify(response));
+            alert("PaymentResponse: " + JSON.stringify(response));
             if (response) {
                 response.complete = function() {
                     console.log("PaymentResponse.complete()");
@@ -14,7 +16,7 @@ self.addEventListener('paymentrequest', function(event) {
                 try {
                     resolve(response);
                 } catch(error) {
-                    console.log(error);
+                    alert(error);
                     reject(error);
                 }
             } else {
@@ -22,11 +24,11 @@ self.addEventListener('paymentrequest', function(event) {
             }
         });
         clients.openWindow("index.html").then(function(windowClient) {
-            console.log("window opened!");
+            alert("window opened!");
             windowClient.postMessage(event.data);
         })
         .catch(function(error) {
-            console.log(error);
+            alert(error);
             reject(error);
         });
     }));
