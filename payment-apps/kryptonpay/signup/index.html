@@ -23,7 +23,7 @@
             }
 
             function install() {
-                alert("Passage");
+                var optionName = "Krypton test by Nelson ";
                 navigator.serviceWorker.register("../pay/app.js")
                 .then(function(registration) {
                     return registration.paymentAppManager.setManifest({
@@ -31,9 +31,9 @@
                         label: "KryptonPay",
                         options: [
                         {
+                            name: optionName,
+                            label: optionName,
                             id: "KryptonPayId",
-                            name: "KryptonPayName",
-                            label: "KryptonPayLabel",
                             enabledMethods: [ "https://kryptonpay.no/pay" ]
                         }]
                     });
