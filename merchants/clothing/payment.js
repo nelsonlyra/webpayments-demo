@@ -119,6 +119,7 @@ function buyWithAny(key) {
 }
 
 function buyWithKryptonPay(key){
+    alert("buyWithKryptonPay");
     var methodData = [
         {
             supportedMethods: [ "https://kryptonpay.no/pay" ]
@@ -126,6 +127,7 @@ function buyWithKryptonPay(key){
     ];
 
     buy(item, methodData, function(error) {
+        alert("buyWithKryptonPay "+error.code);
         if (error.code == DOMException.NOT_SUPPORTED_ERR) {
             if (getQueryParam("buyWithKryptonPay")) {
                 return;
