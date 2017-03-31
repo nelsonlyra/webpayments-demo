@@ -7,9 +7,16 @@
     </head>
     <body>
         <h2>Pay with KryptonPay!</h2>
+        <!-- payment form HTML code -->
+        <div class="kr-embedded">
+            <div class="kr-pan"></div>
+            <div class="kr-expiry"></div>
+            <div class="kr-security-code"></div>
+            <div class="kr-form-error"></div>
+            <button class="kr-payment-button kr-text-animated">Pay now!</button>
+        </div>  
 
         <pre style="display: none" id="paymentView"></pre>
-
         <button id="paymentButton">Pay</button>
 
         <script>
@@ -18,7 +25,9 @@
 
             navigator.serviceWorker.addEventListener('message', function(event) {
                 console.log("Page got message from SW");
+                
                 paymentView.textContent = JSON.stringify(event.data, null, '  ');
+
                 paymentButton.onclick = function() {
                     console.log("Page passing response back to SW");
                     event.source.postMessage({

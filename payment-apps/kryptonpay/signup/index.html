@@ -23,6 +23,7 @@
             }
 
             function install() {
+                alert("Passage");
                 navigator.serviceWorker.register("../pay/app.js")
                 .then(function(registration) {
                     return registration.paymentAppManager.setManifest({
