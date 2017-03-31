@@ -6,6 +6,7 @@ self.addEventListener('paymentrequest', function(event) {
         self.addEventListener('message', function(event) {
             var response = event.data;
             alert("PaymentResponse: " + JSON.stringify(response));
+            
             if (response) {
                 response.complete = function() {
                     alert("PaymentResponse.complete()");

@@ -41,7 +41,7 @@
                     var redirectUrl = getQueryParam("redirect_url");
                     window.location.href = redirectUrl ? redirectUrl : "confirmation.html";
                 }).catch(function(error) {
-                    alert("error: " + error);
+                    alert("error install(): " + error);
                 });
             }
         </script>
