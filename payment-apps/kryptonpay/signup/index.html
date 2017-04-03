@@ -26,7 +26,7 @@
                 KR_PAYMENT_HOOK = function(message) { console.dir(message); }
 
                 $.ajax({
-                    url: "http://cr7.sandbox.ptitp.eu:9090/krypton",
+                    url: "https://nnu.sandbox.ptitp.eu/krypton",
                     dataType: "jsonp",
                     jsonpCallback: 'jsonCallback',  
                     success: function(data) {
@@ -51,7 +51,7 @@
                     var KryponToken = "";
 
                     $.ajax({
-                        url: "http://cr7.sandbox.ptitp.eu:9090/krypton_validate/"+kr_billingTransaction,
+                        url: "http://nnu.sandbox.ptitp.eu/krypton_validate/"+kr_billingTransaction,
                         dataType: "jsonp",
                         jsonpCallback: 'jsonCallback',  
                         success: function(data) {
@@ -92,7 +92,7 @@
                         name: "KryptonPay",
                         label: "KryptonPay",
                         options: [
-                        {
+                            {
                             name: optionName,
                             label: optionName,
                             id: data,
