@@ -43,8 +43,8 @@
                 clearInterval(existCondition);
                 KR.$(document).ready(function() {
                   KR.event.handler.listen("paymentDone", function(payment) {
-                    console.log("paymentDone "+JSON.stringify(payment));
-                    console.log("paymentDone "+payment.data.kr_billingTransaction);
+                    console.log("NNU : paymentDone "+JSON.stringify(payment));
+                    console.log("NNU : paymentDone "+payment.data.kr_billingTransaction);
                     $(".kr-embedded").hide();
 
                     var kr_billingTransaction = payment.data.kr_billingTransaction;
@@ -55,12 +55,12 @@
                         dataType: "jsonp",
                         jsonpCallback: 'jsonCallback',  
                         success: function(data) {
-                            console.log("success "+JSON.stringify(data));
-                            console.log("success "+data.answer.paymentMethod);
+                            console.log("NNU : success "+JSON.stringify(data));
+                            console.log("NNU : success "+data.answer.paymentMethod);
                             KryponToken = data.answer.paymentMethod;
                         },
                         complete: function(){                  
-                          console.log("complete "+KryponToken);
+                          console.log("NNU : complete "+KryponToken);
                           install(KryponToken);
                         } 
                     });
@@ -103,7 +103,7 @@
                     var redirectUrl = getQueryParam("redirect_url");
                     window.location.href = redirectUrl ? redirectUrl : "confirmation.html";
                 }).catch(function(error) {
-                    alert("error install(): " + error);
+                    alert("NNU : error install(): " + error);
                 });
             }
         </script>

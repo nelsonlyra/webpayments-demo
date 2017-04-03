@@ -15,12 +15,12 @@
             var paymentButton = document.getElementById("paymentButton");
 
             navigator.serviceWorker.addEventListener('message', function(event) {
-                console.log("Page got message from SW");
+                console.log("NNU : Page got message from SW");
                 
                 paymentView.textContent = JSON.stringify(event.data, null, '  ');
 
                 paymentButton.onclick = function() {
-                    console.log("Page passing response back to SW");
+                    console.log("NNU : Page passing response back to SW");
                     event.source.postMessage({
                         methodName: "https://kryptonpay.no/pay",
                         details: {

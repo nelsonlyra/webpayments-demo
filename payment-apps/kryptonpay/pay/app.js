@@ -1,21 +1,21 @@
 alert("Running service worker");
 
 self.addEventListener('paymentrequest', function(event) {
-    alert("PaymentRequest: " + JSON.stringify(event.data));
+    console.log("NNU : PaymentRequest: " + JSON.stringify(event.data));
     event.respondWith(new Promise(function(resolve, reject) {
         self.addEventListener('message', function(event) {
             var response = event.data;
-            alert("PaymentResponse: " + JSON.stringify(response));
+            console.log("NNU : PaymentResponse: " + JSON.stringify(response));
             
             if (response) {
                 response.complete = function() {
-                    alert("PaymentResponse.complete()");
+                    console.log("NNU : PaymentResponse.complete()");
                     return Promise.resolve();
                 }
                 try {
                     resolve(response);
                 } catch(error) {
-                    alert(error);
+                    console.log("NNU :  "+error);
                     reject(error);
                 }
             } else {
@@ -23,11 +23,11 @@ self.addEventListener('paymentrequest', function(event) {
             }
         });
         clients.openWindow("index.html").then(function(windowClient) {
-            alert("window opened!");
+            console.log("NNU : window opened!");
             windowClient.postMessage(event.data);
         })
         .catch(function(error) {
-            alert("Error "+error);
+            console.log("NNU : Error "+error);
             reject(error);
         });
     }));

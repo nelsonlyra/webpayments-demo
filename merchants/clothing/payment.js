@@ -62,13 +62,13 @@ function buy(item, methodData, notSupportedCallback) {
         var details = createDetails(item);
         var request = new PaymentRequest(methodData, details, options);
         request.addEventListener("shippingaddresschange", function(evt) {
-            console.log("shipping address changed");
-            console.log(JSON.stringify(evt));
+            console.log("NNU : shipping address changed");
+            console.log("NNU :  "+JSON.stringify(evt));
             evt.updateWith(Promise.resolve(details));
         });
         request.addEventListener("shippingoptionchange", function(evt) {
-            console.log("shipping option changed");
-            console.log(JSON.stringify(evt));
+            console.log("NNU : shipping option changed");
+            console.log("NNU :  "+JSON.stringify(evt));
             if (request.shippingOption === "regular") {
                 details.shippingOptions[0].selected = true;
                 details.shippingOptions[1].selected = false;
@@ -80,7 +80,7 @@ function buy(item, methodData, notSupportedCallback) {
         });
         request.show()
         .then(function(paymentResponse) {
-            console.log("payment response: " + JSON.stringify(paymentResponse));
+            console.log("NNU : payment response: " + JSON.stringify(paymentResponse));
             //console.log("  method name: " + paymentResponse.methodName);
             //console.log("  details: " + JSON.stringify(paymentResponse.details));
             //console.log("  payer name: " + paymentResponse.payerName);
@@ -91,7 +91,7 @@ function buy(item, methodData, notSupportedCallback) {
             }
         })
         .catch(function(error) {
-            console.log("show() error: " + error);
+            console.log("NNU : show() error: " + error);
             if (notSupportedCallback) {
                 notSupportedCallback(error);
             } else {
@@ -127,7 +127,7 @@ function buyWithKryptonPay(key){
     ];
 
     buy(item, methodData, function(error) {
-        alert("buyWithKryptonPay "+error.code);
+        console.log("NNU : buyWithKryptonPay "+error.code);
         if (error.code == DOMException.NOT_SUPPORTED_ERR) {
             if (getQueryParam("buyWithKryptonPay")) {
                 return;
