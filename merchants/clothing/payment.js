@@ -137,6 +137,7 @@ function buyWithKryptonPay(key){
 }
 
 function buyWithKryptonPay2(key){
+    console.log("NNU click buyWithKryptonPay2")
     var methodData = [
         {
             supportedMethods: [ "https://kryptonpay2.no/pay" ]
