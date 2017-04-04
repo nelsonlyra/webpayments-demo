@@ -136,6 +136,29 @@ function buyWithKryptonPay(key){
     });
 }
 
+function buyWithKryptonPay2(key){
+    var methodData = [
+        {
+            supportedMethods: [ "https://kryptonpay2.no/pay" ]
+        }
+    ];
+
+    buy(item, methodData, function(error) {
+        console.log("NNU : buyWithKryptonPay2 "+error.code);
+        if (error.code == DOMException.NOT_SUPPORTED_ERR) {
+            if (getQueryParam("buyWithKryptonPay2")) {
+                return;
+            }
+            var redirectUrl = window.location.href;
+            redirectUrl += redirectUrl.indexOf('?') == -1 ? '?' : '&';
+            redirectUrl += "buyWithKryptonPay2=" + key;
+            window.location.href =
+                "https://nelsonlyra.github.io/webpayments-demo/payment-apps/kryptonpay2/signup/?redirect_url=" +
+                encodeURI(redirectUrl);
+        }
+    });
+}
+
 function buyWithTommyPay(key) {
     var item = items[key];
     var methodData = [
@@ -187,5 +210,9 @@ if (getQueryParam("buyWithTommyPay")) {
 
 if (getQueryParam("buyWithKryptonPay")) {
     buyWithKryptonPay(getQueryParam("buyWithKryptonPay"));
+}
+
+if (getQueryParam("buyWithKryptonPay2")) {
+    buyWithKryptonPay(getQueryParam("buyWithKryptonPay2"));
 }
 
