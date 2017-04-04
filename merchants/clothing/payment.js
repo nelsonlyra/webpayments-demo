@@ -76,8 +76,10 @@ function buy(item, methodData, notSupportedCallback) {
         });
         request.show()
         .then(function(paymentResponse) {
-            console.log("NNU : payment response: " + JSON.stringify(paymentResponse));
-            alert(paymentResponse.details.test.optionId);
+            console.log("NNU : payment response: " + JSON.stringify(paymentResponse));            
+            document.querySelector('body').innerHTML = '<h1>Super, token : '+paymentResponse.details.test.optionId+'</h1><iframe src="//giphy.com/embed/3osxYrFfs8NL6of1yU" width="480" height="403.2" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/originals-april-fools-3osxYrFfs8NL6of1yU">via GIPHY</a></p>';
+            
+
             /*
             if (paymentResponse) {
                 window.location.href = "receipt.html?key=" + key;
