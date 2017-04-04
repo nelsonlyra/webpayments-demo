@@ -62,13 +62,9 @@ function buy(item, methodData, notSupportedCallback) {
         var details = createDetails(item);
         var request = new PaymentRequest(methodData, details, options);
         request.addEventListener("shippingaddresschange", function(evt) {
-            console.log("NNU : shipping address changed");
-            console.log("NNU :  "+JSON.stringify(evt));
             evt.updateWith(Promise.resolve(details));
         });
         request.addEventListener("shippingoptionchange", function(evt) {
-            console.log("NNU : shipping option changed");
-            console.log("NNU :  "+JSON.stringify(evt));
             if (request.shippingOption === "regular") {
                 details.shippingOptions[0].selected = true;
                 details.shippingOptions[1].selected = false;
