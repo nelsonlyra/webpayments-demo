@@ -214,6 +214,6 @@ if (getQueryParam("buyWithKryptonPay")) {
 }
 
 if (getQueryParam("buyWithKryptonPay2")) {
-    buyWithKryptonPay(getQueryParam("buyWithKryptonPay2"));
+    buyWithKryptonPay2(getQueryParam("buyWithKryptonPay2"));
 }
 
