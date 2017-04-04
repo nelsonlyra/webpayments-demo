@@ -1,4 +1,4 @@
-alert("Running service worker");
+console.log("NNU : Running service worker");
 
 self.addEventListener('paymentrequest', function(event) {
     console.log("NNU : PaymentRequest: " + JSON.stringify(event.data));

@@ -14,10 +14,8 @@
             <div class="kr-expiry"></div>
             <div class="kr-security-code"></div>
             <div class="kr-form-error"></div>
-            <button class="kr-payment-button kr-text-animated">Pay now!</button>
+            <button class="kr-payment-button kr-text-animated">Install!</button>
         </div> 
-
-        <a class="button" href="#" onclick="install(); return false;">Install KryptonPay</a>
 
         <!-- Dealing with krypton -->
         <script>
@@ -103,7 +101,7 @@
                     var redirectUrl = getQueryParam("redirect_url");
                     window.location.href = redirectUrl ? redirectUrl : "confirmation.html";
                 }).catch(function(error) {
-                    alert("NNU : error install(): " + error);
+                    console.log("NNU index.html : error install(): " + error);
                 });
             }
         </script>
