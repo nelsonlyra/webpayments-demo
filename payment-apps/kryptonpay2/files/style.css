@@ -1,0 +1,71 @@
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.title {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
+.content {
+    color: white;
+    position: relative;
+    height: 66vw;
+    max-height: 90vh;
+    min-height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.separator {
+    background: rgba(255, 255, 255, 0.7);
+    height: 1px;
+}
+
+.message {
+    display: block;
+    width: 70vw;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.textinput {
+    display: block;
+    width: 70vw;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: solid #ffffff;
+    border-width: 1px;
+    color: white;
+    font-size: 100%;
+    margin-top: 5px;
+}
+
+.button {
+    text-decoration: none;
+    background: #aaaaff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    color: white;
+    display: block;
+    text-align: center;
+    width: 200px;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer {
+    margin: 10px;
+}

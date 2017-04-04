@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pay with TommyPay</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+
+        <!-- payment form HTML code -->
+        <div class="kr-embedded">
+            <div class="kr-pan"></div>
+            <div class="kr-expiry"></div>
+            <div class="kr-security-code"></div>
+            <div class="kr-form-error"></div>
+            <button class="kr-payment-button kr-text-animated">Install!</button>
+        </div>
+
+        <pre style="display: none" id="paymentView"></pre>
+        <button id="paymentButton">Pay</button>
+
+        <!-- Dealing with krypton -->
+        <script>
+            var KryponToken = "";
+            navigator.serviceWorker.addEventListener('message', function(event) {
+                console.log("NNU : Page got message from SW "+event.data);
+                //paymentView.textContent = JSON.stringify(event.data, null, '  ');
+
+                var ftoken = "";
+                KR_PAYMENT_HOOK = function(message) { console.dir(message); }
+
+                $.ajax({
+                    url: "https://nnu.sandbox.ptitp.eu/krypton",
+                    dataType: "jsonp",
+                    jsonpCallback: 'jsonCallback',  
+                    success: function(data) {
+                        ftoken = data.answer.formToken;
+                    },
+                    complete: function(){                  
+                      $('head').append('<script id="krypton" src="https://secure.payzen.eu/static/js/krypton-client/V3/stable/kr.min.js?formToken='+ftoken+'" kr-public-key="69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5"  kr-post-url="index_krypton.html" kr-theme="icons-1"></\script>');
+                    } 
+                });
+
+                var existCondition = setInterval(function() {
+                 if(typeof KR !== "undefined"){
+                    clearInterval(existCondition);
+                    KR.$(document).ready(function() {
+                      KR.event.handler.listen("paymentDone", function(payment) {
+                        console.log("NNU : paymentDone "+JSON.stringify(payment));
+                        console.log("NNU : paymentDone "+payment.data.kr_billingTransaction);
+                        $(".kr-embedded").hide();
+
+                        var kr_billingTransaction = payment.data.kr_billingTransaction;
+
+                        $.ajax({
+                            url: "https://nnu.sandbox.ptitp.eu/krypton_validate/"+kr_billingTransaction,
+                            dataType: "jsonp",
+                            jsonpCallback: 'jsonCallback',  
+                            success: function(data) {
+                                console.log("NNU : success "+JSON.stringify(data));
+                                console.log("NNU : success "+data.answer.paymentMethod);
+                                KryponToken = data.answer.paymentMethod;
+                            },
+                            complete: function(){                  
+                                console.log("NNU : complete "+KryponToken);
+                                event.source.postMessage({
+                                    methodName: "https://kryptonpay.no/pay",
+                                    details: {
+                                        test: KryponToken
+                                    }
+                                });
+                                window.close();
+                            } 
+                        });
+
+                      });
+                    });   
+                 }
+                }, 100);
+
+                /*
+                paymentButton.onclick = function() {
+                    console.log("NNU : Page passing response back to SW ");
+                    event.source.postMessage({
+                        methodName: "https://kryptonpay.no/pay",
+                        details: {
+                            test: KryponToken
+                        }
+                    });
+                    window.close();
+                }
+                */
+            });
+        </script>
+    </body>
+</html>
