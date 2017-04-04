@@ -81,11 +81,11 @@ function buy(item, methodData, notSupportedCallback) {
         request.show()
         .then(function(paymentResponse) {
             console.log("NNU : payment response: " + JSON.stringify(paymentResponse));
-            //console.log("  method name: " + paymentResponse.methodName);
-            //console.log("  details: " + JSON.stringify(paymentResponse.details));
-            //console.log("  payer name: " + paymentResponse.payerName);
-            //console.log("  payer email: " + paymentResponse.payerEmail);
-            //console.log("  payer phone: " + paymentResponse.payerPhone);
+            console.log("NNU  method name: " + paymentResponse.methodName);
+            console.log("NNU  details: " + JSON.stringify(paymentResponse.details));
+            console.log("NNU  payer name: " + paymentResponse.payerName);
+            console.log("NNU  payer email: " + paymentResponse.payerEmail);
+            console.log("NNU  payer phone: " + paymentResponse.payerPhone);
             if (paymentResponse) {
                 window.location.href = "receipt.html?key=" + key;
             }
@@ -119,7 +119,6 @@ function buyWithAny(key) {
 }
 
 function buyWithKryptonPay(key){
-    alert("buyWithKryptonPay POUET");
     var methodData = [
         {
             supportedMethods: [ "https://kryptonpay.no/pay" ]
