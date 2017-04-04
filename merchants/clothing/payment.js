@@ -77,11 +77,6 @@ function buy(item, methodData, notSupportedCallback) {
         request.show()
         .then(function(paymentResponse) {
             console.log("NNU : payment response: " + JSON.stringify(paymentResponse));
-            console.log("NNU  method name: " + paymentResponse.methodName);
-            console.log("NNU  details: " + JSON.stringify(paymentResponse.details));
-            console.log("NNU  payer name: " + paymentResponse.payerName);
-            console.log("NNU  payer email: " + paymentResponse.payerEmail);
-            console.log("NNU  payer phone: " + paymentResponse.payerPhone);
             if (paymentResponse) {
                 window.location.href = "receipt.html?key=" + key;
             }
