@@ -1,6 +1,11 @@
 self.addEventListener('paymentrequest', function(event) {
     event.respondWith(new Promise(function(resolve, reject) {
-        var response = event.data;
+        var response = {
+            methodName: "https://kryptonpay.no/pay",
+            details: {
+                test: event.data
+            }
+        };
         if (response) {
             response.complete = function() {
                 return Promise.resolve();
