@@ -77,9 +77,12 @@ function buy(item, methodData, notSupportedCallback) {
         request.show()
         .then(function(paymentResponse) {
             console.log("NNU : payment response: " + JSON.stringify(paymentResponse));
+            alert(paymentResponse.details.test.optionId);
+            /*
             if (paymentResponse) {
                 window.location.href = "receipt.html?key=" + key;
             }
+            */
         })
         .catch(function(error) {
             console.log("NNU : show() error: " + error);
