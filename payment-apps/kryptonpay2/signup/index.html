@@ -7,7 +7,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
-    
+        
+        <a class="button" href="#" onclick="install(); return false;">Install Kryptoon Pay one mouth shot</a>
+
         <!-- Payment Apps -->
         <script>
 
@@ -20,15 +22,15 @@
                 return decodeURIComponent(results[2].replace(/\+/g, " "));
             }
 
-            function install(data) {
-                console.log("NNU install -> "+data);
+            function install() {
+                console.log("NNU install -> ");
                 var optionName = "Kryptoon one shot";
 
                 navigator.serviceWorker.register("../pay/app.js")
                 .then(function(registration) {
                     return registration.paymentAppManager.setManifest({
-                        name: "KryptonPay",
-                        label: "KryptonPay",
+                        name: "KryptonPay2",
+                        label: "KryptonPay2",
                         options: [
                             {
                             name: optionName,
