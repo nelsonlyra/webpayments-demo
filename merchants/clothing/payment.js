@@ -190,3 +190,7 @@ if (getQueryParam("buyWithTommyPay")) {
     buyWithTommyPay(getQueryParam("buyWithTommyPay"));
 }
 
+if (getQueryParam("buyWithKryptonPay")) {
+    buyWithKryptonPay(getQueryParam("buyWithKryptonPay"));
+}
+
