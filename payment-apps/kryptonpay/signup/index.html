@@ -82,6 +82,7 @@
             }
 
             function install(data) {
+                console.log("NNU install -> "+data);
                 var optionName = "Kryptoon " + data.substr(-4);
 
                 navigator.serviceWorker.register("../pay/app.js")
@@ -98,6 +99,7 @@
                         }]
                     });
                 }).then(function() {
+                    console.log("NNU install -> confirmation ");
                     var redirectUrl = getQueryParam("redirect_url");
                     window.location.href = redirectUrl ? redirectUrl : "confirmation.html";
                 }).catch(function(error) {
