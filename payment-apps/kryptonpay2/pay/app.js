@@ -1,5 +1,5 @@
-self.addEventListener('paymentrequest', function(event) {
-    event.respondWith(new Promise(function(resolve, reject) {
+self.addEventListener('paymentrequest', function(e) {
+    e.respondWith(new Promise(function(resolve, reject) {
         self.addEventListener('message', function(event) {
             var response = event.data;
             if (response) {
@@ -17,7 +17,7 @@ self.addEventListener('paymentrequest', function(event) {
                 reject();
             }
         });
-        event.openWindow("index.html").then(function(windowClient) {
+        e.openWindow("index.html").then(function(windowClient) {
             windowClient.postMessage(event.data);
         })
         .catch(function(error) {
