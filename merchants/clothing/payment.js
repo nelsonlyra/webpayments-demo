@@ -77,8 +77,11 @@ function buy(item, methodData, notSupportedCallback) {
         request.show()
         .then(function(paymentResponse) {
             console.log("NNU : payment response: " + JSON.stringify(paymentResponse));            
-            document.querySelector('body').innerHTML = '<h1>Super, token : '+paymentResponse.details.test.optionId+'</h1><iframe src="//giphy.com/embed/3osxYrFfs8NL6of1yU" width="480" height="403.2" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>';
             
+            if(paymentResponse.details.test.optionId)
+                document.querySelector('body').innerHTML = '<h1>Super, token : '+paymentResponse.details.test.optionId+'</h1><iframe src="//giphy.com/embed/3osxYrFfs8NL6of1yU" width="480" height="403.2" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>';
+            else
+                document.querySelector('body').innerHTML = '<h1>Super, token : '+paymentResponse.details.test+'</h1><iframe src="//giphy.com/embed/3osxYrFfs8NL6of1yU" width="480" height="403.2" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>';
             /*
             if (paymentResponse) {
                 window.location.href = "receipt.html?key=" + key;

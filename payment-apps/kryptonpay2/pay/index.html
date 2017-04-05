@@ -7,18 +7,16 @@
     </head>
     <body>
 
-
         <!-- payment form HTML code -->
         <div class="kr-embedded">
             <div class="kr-pan"></div>
             <div class="kr-expiry"></div>
             <div class="kr-security-code"></div>
             <div class="kr-form-error"></div>
-            <button class="kr-payment-button kr-text-animated">Install!</button>
+            <button class="kr-payment-button kr-text-animated">Shot!</button>
         </div>
 
         <pre style="display: none" id="paymentView"></pre>
-        <button id="paymentButton">Pay</button>
 
         <!-- Dealing with krypton -->
         <script>
@@ -65,7 +63,7 @@
                             complete: function(){                  
                                 console.log("NNU : complete "+KryponToken);
                                 event.source.postMessage({
-                                    methodName: "https://kryptonpay.no/pay",
+                                    methodName: "https://kryptonpay2.no/pay",
                                     details: {
                                         test: KryponToken
                                     }
